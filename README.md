@@ -42,7 +42,7 @@ We welcome contributions in the following languages:
 - Java
 - C#
 - C++
-- ETC.
+- other languages
 
 **Note**: While all pull requests will be reviewed, only those that add genuine value to the repo will be merged. We appreciate your efforts and look forward to your valuable contributions!
 
