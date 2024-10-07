@@ -12,12 +12,16 @@ type Client struct {
 	Headers    map[string]string
 }
 
-// NewClient creates a new instance of Client
-func NewClient(headers map[string]string) *Client {
-	return &Client{
-		HTTPClient: &http.Client{},
-		Headers:    headers,
-	}
+// NewClient creates a new HTTP client with custom headers
+
+func NewClient(headers map[string]string) *http.Client {
+
+	client := &http.Client{}
+
+	// You can add custom headers handling logic here if needed
+
+	return client
+
 }
 
 // Post sends a POST request to the specified URL with the provided data

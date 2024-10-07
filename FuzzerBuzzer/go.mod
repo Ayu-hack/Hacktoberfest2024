@@ -1,4 +1,5 @@
-module FuzzerBuzzer
+module github.com/Ayushi40804/Hacktoberfest2024/FuzzerBuzzer
+
 
 go 1.23.2
 

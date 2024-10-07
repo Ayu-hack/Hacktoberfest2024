@@ -1,50 +1,43 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 
-	"Hacktoberfest2024/FuzzerBuzzer/internal/fuzz_logic" // Correct module path
-	"Hacktoberfest2024/FuzzerBuzzer/internal/http"       // Correct module path
-
-	// Correct module path
-
-	"gopkg.in/yaml.v2" // For handling YAML configuration
+	"github.com/Ayushi40804/Hacktoberfest2024/FuzzerBuzzer/internal/fuzz_logic"
+	"github.com/Ayushi40804/Hacktoberfest2024/FuzzerBuzzer/internal/generator"
+	"gopkg.in/yaml.v2"
 )
 
-// Config structure for holding configuration details
 type Config struct {
-	TargetURL string            `yaml:"target_url"`
-	Headers   map[string]string `yaml:"headers"`
+	TargetURL string `yaml:"target_url"`
+	Seed      int64  `yaml:"seed"`
 }
 
 func main() {
-	// Load configuration
-	config := loadConfig("config/config.yaml")
-	fmt.Printf("Starting fuzzing on target: %s\n", config.TargetURL)
+	// Load the configuration
+	config, err := loadConfig("config/config.yaml")
+	if err != nil {
+		log.Fatalf("Error reading config file: %v", err)
+	}
 
-	// Create an HTTP client
-	client := http.NewClient(config.Headers)
+	// Create an InputGenerator
+	inputGen := generator.NewInputGenerator(config.Seed)
 
-	// Generate inputs and start fuzzing
-	fuzzer := fuzz_logic.NewFuzzer(client, config.TargetURL)
+	// Create a Fuzzer
+	fuzzer := fuzz_logic.NewFuzzer(config.TargetURL, inputGen)
 
 	// Start the fuzzing process
 	fuzzer.Start()
 }
 
-// Function to load the configuration from a YAML file
-func loadConfig(filePath string) Config {
+// loadConfig loads the configuration from a YAML file
+func loadConfig(path string) (Config, error) {
 	var config Config
-	data, err := os.ReadFile(filePath)
+	data, err := os.ReadFile(path)
 	if err != nil {
-		fmt.Printf("Error reading config file: %v\n", err)
-		os.Exit(1)
+		return config, err
 	}
 	err = yaml.Unmarshal(data, &config)
-	if err != nil {
-		fmt.Printf("Error parsing config file: %v\n", err)
-		os.Exit(1)
-	}
-	return config
+	return config, err
 }

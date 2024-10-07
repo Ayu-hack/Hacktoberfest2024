@@ -12,6 +12,7 @@ type InputGenerator struct {
 
 // NewInputGenerator creates a new InputGenerator with a specified seed
 func NewInputGenerator(seed int64) *InputGenerator {
+	rand.Seed(seed) // Seed the random number generator
 	return &InputGenerator{Seed: seed}
 }
 
@@ -27,7 +28,6 @@ func (ig *InputGenerator) GenerateRandomString(length int) string {
 
 // GenerateRandomJSON generates random JSON input
 func (ig *InputGenerator) GenerateRandomJSON() string {
-	// Example structure for generating random JSON
 	type RandomData struct {
 		Name  string `json:"name"`
 		Email string `json:"email"`
