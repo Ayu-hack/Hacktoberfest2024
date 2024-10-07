@@ -1,5 +1,11 @@
 ### Hacktoberfest 2024 Contributions Welcome! (Maintained by Ayush Tiwari)
 
+
+## Please consider contributing to this repo: https://github.com/Ayu-hack/GeeksforGeeks-POTD-Solution
+Sorry for the inconvenience, and thank you for your understanding! 🙏
+
+
+
 [![Hacktoberfest 2024](https://img.shields.io/badge/Hacktoberfest-2024-ff6f00?style=flat-square&logo=hacktoberfest&logoColor=white&labelColor=000000)](https://hacktoberfest.digitalocean.com/)
 
 **⭐ Please star this repo as a token of appreciation for the efforts! 🙌**  
